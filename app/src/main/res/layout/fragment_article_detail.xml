@@ -83,6 +83,8 @@
                     android:paddingBottom="@dimen/detail_body_bottom_margin"
                     android:textColor="@android:color/black"
                     android:textColorLink="@color/colorPrimary"
+                    android:autoLink="web"
+                    android:linksClickable="true"
                     android:textSize="@dimen/detail_body_text_size"
                     android:lineSpacingMultiplier="@fraction/detail_body_line_spacing_multiplier" />
 
@@ -95,6 +97,7 @@
         android:background="@drawable/add_fab_background"
         android:layout_gravity="bottom|end"
         android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="@dimen/fab_margin"
         android:layout_width="56dp"
         android:layout_height="56dp"

@@ -26,6 +26,8 @@ import com.example.xyzreader.data.ItemsContract;
 public class ArticleDetailActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
 
+    public final static String SELECTED_ID_EXTRA = "SELECTED_ID_EXTRA";
+
     private Cursor mCursor;
     private long mStartId;
 
@@ -70,8 +72,9 @@ public class ArticleDetailActivity extends AppCompatActivity
             public void onPageSelected(int position) {
                 if (mCursor != null) {
                     mCursor.moveToPosition(position);
+                    mSelectedItemId = mCursor.getLong(ArticleLoader.Query._ID);
                 }
-                mSelectedItemId = mCursor.getLong(ArticleLoader.Query._ID);
+
                 updateUpButtonPosition();
             }
         });
@@ -104,7 +107,15 @@ public class ArticleDetailActivity extends AppCompatActivity
                 mStartId = ItemsContract.Items.getItemId(getIntent().getData());
                 mSelectedItemId = mStartId;
             }
+        } else {
+            mSelectedItemId = savedInstanceState.getLong(SELECTED_ID_EXTRA);
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putLong(SELECTED_ID_EXTRA, mSelectedItemId);
     }
 
     @Override
